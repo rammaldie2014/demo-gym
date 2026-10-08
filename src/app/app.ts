@@ -1,12 +1,23 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { Home } from './features/home/home';
+import { gym } from './core/config/gym';
+import { ContactButton } from './shared/contact-button';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ContactButton, Home],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('demo-gym');
+  readonly gym = gym;
+  readonly year = new Date().getFullYear();
+  readonly open = signal(false);
+  readonly links = [
+    { id: 'inicio', label: 'Inicio' },
+    { id: 'nosotros', label: 'Nosotros' },
+    { id: 'servicios', label: 'Servicios' },
+    { id: 'planes', label: 'Planes' },
+    { id: 'instalaciones', label: 'Instalaciones' },
+    { id: 'contacto', label: 'Contacto' },
+  ];
 }
